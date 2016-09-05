@@ -58,6 +58,14 @@ bindkey "^I" expand-or-complete-with-dots
 alias gc-='git checkout -'
 alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
+alias gcd='git checkout develop'
+alias gmd='gm develop'
+
+# edits
+alias gpp='git pull --ff-only origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)"'
+alias gfm='git pull --ff-only'
+alias gm='gmF'
+
 ## misc
 #doesn't display current user in context
 export DEFAULT_USER="$USER"
