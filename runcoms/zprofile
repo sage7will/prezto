@@ -1,3 +1,9 @@
+PATH=~/Applications/apache-maven-3.1.1/bin:$PATH
+
+export MAVEN_OPTS='-Xms500M -Xmx2000M -Xdebug -Xrunjdwp:transport=dt_socket,address=8009,server=y,suspend=n'
+
+alias vvlocal='sudo ssh -p 2222  -i ~/.vagrant.d/insecure_private_key root@my.vaultdev.com -L 443:127.0.0.1:8443 -L 80:127.0.0.1:8080 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
 #
 # Executes commands at login pre-zshrc.
 #
@@ -16,9 +22,8 @@ fi
 #
 # Editors
 #
-
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR="subl -n -w"
+export VISUAL='vim'
 export PAGER='less'
 
 #

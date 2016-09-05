@@ -5,9 +5,70 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+alias vup="cd ~/workspace/vagrant;vagrant up;cd -"
+alias vssh="cd ~/workspace/vagrant;vagrant ssh"
+alias vhalt="cd ~/workspace/vagrant;vagrant halt;cd -"
+alias vault="cd ~/Documents/workspace/vault"
+alias vvl="vvlocal"
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+
+## Autosuggest
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=(fg=cyan)
+ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+# alt-rightarrow binds to partial match
+bindkey '^[f' vi-forward-blank-word 
+
+## POWERLEVEL9K Theme
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=" "
+
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+
+POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context time dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs status)
+
+expand-or-complete-with-dots() {      # This bunch of code displays red dots when autocompleting
+  echo -n "\e[31m......\e[0m"         # a command with the tab key, "Oh-my-zsh"-style.
+  zle expand-or-complete
+  zle redisplay
+}
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots
+
+## git 
+# additions
+alias gc-='git checkout -'
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+## misc
+#doesn't display current user in context
+export DEFAULT_USER="$USER"
+
+# Add homebrew to the completion path
+fpath=("/usr/local/bin/" $fpath)
+
+# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
+setopt RM_STAR_WAIT
+
+# I don't know why I never set this before.
+setopt EXTENDED_GLOB
+
+
